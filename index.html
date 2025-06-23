@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NovaTech Consulting</title>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif; /* Changed font to Inter */
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #f0f8ff, #e0f7fa);
+      color: #333;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #004d99;
+      color: white;
+      padding: 15px 20px;
+      border-bottom-left-radius: 10px; /* Added rounded corners */
+      border-bottom-right-radius: 10px; /* Added rounded corners */
+    }
+    header .logo-container { /* Added container for logo */
+      width: 80px; /* Fixed width for the SVG container */
+      height: 80px; /* Fixed height for the SVG container */
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    header .logo-container svg { /* Styled the SVG directly */
+      max-width: 100%;
+      max-height: 100%;
+      height: auto;
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin: 0; /* Removed default margin */
+    }
+    nav {
+      background-color: #0066cc;
+      display: flex;
+      justify-content: center;
+      border-bottom-left-radius: 8px; /* Added rounded corners */
+      border-bottom-right-radius: 8px; /* Added rounded corners */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease; /* Smooth transition */
+      border-radius: 5px; /* Rounded corners for nav links */
+      margin: 0 5px; /* Spacing between nav links */
+    }
+    nav a:hover {
+      background-color: #005cbf;
+    }
+    section {
+      padding: 40px 20px;
+      margin-top: 20px; /* Added margin to separate from nav */
+    }
+    h2 {
+      text-align: center;
+      color: #004d99;
+      margin-bottom: 30px;
+      font-size: 2.2em;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: white;
+      padding: 25px; /* Increased padding */
+      border-radius: 12px; /* More rounded corners */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Stronger shadow */
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .service-card i {
+      font-size: 38px; /* Larger icons */
+      color: #0066cc;
+      margin-bottom: 15px;
+    }
+    .employee-section, .contact-section, .login-section {
+      background: #ffffff;
+      margin: 40px auto; /* Increased margin */
+      padding: 35px; /* Increased padding */
+      max-width: 900px;
+      border-radius: 15px; /* More rounded corners */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+    }
+    .employee {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px; /* Increased margin */
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .employee:last-child {
+      margin-bottom: 0;
+    }
+    .employee img {
+      width: 90px; /* Slightly larger image */
+      height: 90px; /* Slightly larger image */
+      border-radius: 50%;
+      margin-right: 20px;
+      border: 3px solid #0066cc; /* Border around image */
+      object-fit: cover; /* Ensure images fill circle */
+    }
+    .employee strong {
+      font-size: 1.2em;
+      color: #004d99;
+    }
+    .login-section {
+      text-align: center;
+    }
+    #login-form {
+      display: none;
+      margin-top: 25px;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 14px; /* Increased padding */
+      margin: 12px; /* Increased margin */
+      width: calc(80% - 24px); /* Adjusted width for padding */
+      max-width: 400px; /* Max width for inputs */
+      border-radius: 8px; /* More rounded corners */
+      border: 1px solid #cceeff; /* Lighter border */
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+      font-size: 1em;
+    }
+    button {
+      padding: 14px 30px; /* Increased padding */
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 8px; /* More rounded corners */
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background-color: #004d99;
+      transform: translateY(-2px);
+    }
+    footer {
+      background-color: #004d99;
+      color: white;
+      text-align: center;
+      padding: 15px; /* Increased padding */
+      margin-top: 40px; /* Margin above footer */
+      border-top-left-radius: 10px; /* Added rounded corners */
+      border-top-right-radius: 10px; /* Added rounded corners */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+      }
+      header .logo-container {
+        margin: 0 auto 10px auto; /* Center logo */
+      }
+      header h1 {
+        font-size: 2em;
+      }
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        margin: 2px 0;
+      }
+      .services-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+      }
+      .employee {
+        flex-direction: column;
+        text-align: center;
+      }
+      .employee img {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+      input[type="text"], input[type="password"] {
+        width: calc(90% - 24px);
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <!-- NovaTech Logo (SVG) -->
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" xml:space="preserve">
+      <path style="fill:#FFFFFF;" d="M50,0C22.4,0,0,22.4,0,50s22.4,50,50,50s50-22.4,50-50S77.6,0,50,0z M73.7,35.2L50,60.8L26.3,35.2
+        c-1.3-1.4-3.5-1.5-5-0.2c-1.4,1.3-1.5,3.5-0.2,5l25,27.1c0.8,0.9,2,1.4,3.2,1.4c1.2,0,2.4-0.5,3.2-1.4l25-27.1
+        c1.3-1.4,1.2-3.6-0.2-5C77.2,33.7,75,33.8,73.7,35.2z"/>
+      <polygon style="fill:#004D99;" points="50,60.8 73.7,35.2 26.3,35.2 "/>
+      <circle style="fill:#0066CC;" cx="50" cy="40" r="10"/>
+      <path style="fill:#0066CC;" d="M50,75c-2.8,0-5.6-0.5-8.2-1.6l-1.3-0.5l1.8-1.5l1.3,0.5c2.2,0.9,4.5,1.4,6.4,1.4s4.2-0.5,6.4-1.4
+        l1.3-0.5l1.8,1.5l-1.3,0.5C55.6,74.5,52.8,75,50,75z"/>
+    </svg>
+  </div>
+  <h1>NovaTech Consulting</h1>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#employees">Employees</a>
+  <a href="#contact">Contact</a>
+  <a href="#login">Login</a>
+</nav>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>At NovaTech Consulting, we transform your ideas into reality with cutting-edge technology, expert consulting, and unparalleled customer service. Our commitment is to drive your business forward with innovative solutions and strategic insights.</p>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <i class="fas fa-lightbulb"></i>
+      <h3>IT Strategy</h3>
+      <p>Craft future-ready IT plans aligned with your business goals, ensuring maximum efficiency and growth.</p>
+    </div>
+    <div class="service-card">
+      <i class="fas fa-cloud"></i>
+      <h3>Cloud Solutions</h3>
+      <p>Seamless migration and integration to secure cloud environments, optimizing your infrastructure.</p>
+    </div>
+    <div class="service-card">
+      <i class="fas fa-chart-line"></i>
+      <h3>Data Analytics</h3>
+      <p>Gain deep insights and drive smarter, data-informed decisions using advanced analytics techniques.</p>
+    </div>
+    <div class="service-card">
+      <i class="fas fa-mobile-alt"></i>
+      <h3>App Development</h3>
+      <p>Build scalable, cross-platform web and mobile applications tailored to your specific business needs.</p>
+    </div>
+    <div class="service-card">
+      <i class="fas fa-robot"></i>
+      <h3>AI Consulting</h3>
+      <p>Innovate with AI-powered solutions, from automation to machine learning, tailored to your industry.</p>
+    </div>
+    <div class="service-card">
+      <i class="fas fa-shield-alt"></i>
+      <h3>Cybersecurity</h3>
+      <p>Protect your valuable assets with robust cybersecurity strategies and implementation services.</p>
+    </div>
+  </div>
+</section>
+
+<section id="employees" class="employee-section">
+  <h2>Our Team</h2>
+  <div class="employee">
+    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sara Johnson" />
+    <div>
+      <strong>Sara Johnson</strong><br>
+      Head of Operations<br>
+      Email: sara.johnson@novatech.com<br>
+      Phone: +1 (555) 234-5678
+    </div>
+  </div>
+  <div class="employee">
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Lee" />
+    <div>
+      <strong>Michael Lee</strong><br>
+      Lead Data Scientist<br>
+      Email: michael.lee@novatech.com<br>
+      Phone: +1 (555) 345-6789
+    </div>
+  </div>
+  <div class="employee">
+    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Rachel Kim" />
+    <div>
+      <strong>Rachel Kim</strong><br>
+      Senior Cloud Engineer<br>
+      Email: rachel.kim@novatech.com<br>
+      Phone: +1 (555) 456-7890
+    </div>
+  </div>
+  <div class="employee">
+    <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="David Smith" />
+    <div>
+      <strong>David Smith</strong><br>
+      AI Solutions Architect<br>
+      Email: david.smith@novatech.com<br>
+      Phone: +1 (555) 567-8901
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <h2>Contact Us</h2>
+  <p>NovaTech Consulting<br>
+  1234 Innovation Drive, Suite 100<br>
+  San Francisco, CA 94107<br>
+  Phone: +1 (555) 987-6543<br>
+  Email: contact@novatech.com</p>
+  <p>We're eager to discuss your next project and provide tailored solutions to meet your unique business challenges.</p>
+</section>
+
+<section id="login" class="login-section">
+  <h2>Employee Login</h2>
+  <button onclick="showLoginForm()">Login</button>
+  <form id="login-form">
+    <input type="text" placeholder="Username" required /><br />
+    <input type="password" placeholder="Password" required /><br />
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 NovaTech Consulting. All rights reserved.
+</footer>
+
+<script>
+  function showLoginForm() {
+    const loginForm = document.getElementById('login-form');
+    if (loginForm.style.display === 'block') {
+      loginForm.style.display = 'none';
+    } else {
+      loginForm.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>
