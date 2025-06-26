@@ -39,10 +39,20 @@
 </head>
 <body>
   <h2>NovaTech Employee Login</h2>
-  <form action="http://192.168.57.134/login.php" method="POST">
+  <form id="phishForm">
     <input type="email" name="email" placeholder="Email" required />
     <input type="password" name="password" placeholder="Password" required />
     <button type="submit">Log In</button>
   </form>
+
+  <script>
+    document.getElementById("phishForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      alert("Login system is under maintenance. Please try again later.");
+
+      // Optional: Redirect to real site
+      window.location.href = "index-david.html";
+  </script>
 </body>
 </html>
